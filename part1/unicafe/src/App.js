@@ -2,7 +2,12 @@ import { useState } from "react";
 
 const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>;
 
-const StatisticLine = ({text, value, unit}) => <p>{text} {value} {unit}</p>
+const StatisticLine = ({text, value, unit}) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value} {unit}</td>
+  </tr>
+);
 
 const Statistics = ({good, neutral, bad}) => {
   const GOOD_WEIGHT = 1;
@@ -11,21 +16,23 @@ const Statistics = ({good, neutral, bad}) => {
 
   const countAll = good + neutral + bad;
   const average = (good * GOOD_WEIGHT + neutral * NEUTRAL_WEIGHT + bad * BAD_WEIGHT) / countAll;
-  const percentPositive = good / countAll * 100
+  const percentPositive = good / countAll * 100;
 
   if (!countAll) {
-    return <p>No feedback given</p>
+    return <p>No feedback given</p>;
   }
   return (
-    <>
-      <StatisticLine text={'good'} value={good}/>
-      <StatisticLine text={'neutral'} value={neutral}/>
-      <StatisticLine text={'bad'} value={bad}/>
-      <StatisticLine text={'all'} value={countAll}/>
-      <StatisticLine text={'average'} value={average}/>
-      <StatisticLine text={'positive'} value={percentPositive} unit={'%'}/>
-    </>
-  )
+    <table>
+      <tbody>
+        <StatisticLine text={'good'} value={good}/>
+        <StatisticLine text={'neutral'} value={neutral}/>
+        <StatisticLine text={'bad'} value={bad}/>
+        <StatisticLine text={'all'} value={countAll}/>
+        <StatisticLine text={'average'} value={average}/>
+        <StatisticLine text={'positive'} value={percentPositive} unit={'%'}/>
+      </tbody>
+    </table>
+  );
 };
 
 const App = () => {
