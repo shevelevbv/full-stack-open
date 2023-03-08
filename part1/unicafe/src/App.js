@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>;
 
-const Stats = ({text, stats, unit}) => <p>{text} {stats} {unit}</p>;
+const Statistics = ({text, stats, unit}) => <p>{text} {stats} {unit}</p>;
 
 const App = () => {
   const [good, setGood] = useState(0);
@@ -30,12 +30,12 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text={'neutral'}/>
       <Button handleClick={() => setBad(bad + 1)} text={'bad'}/>
       <h2>statistics</h2>
-      <Stats text={'good'} stats={good} />
-      <Stats text={'neutral'} stats={neutral} />
-      <Stats text={'bad'} stats={bad} />
-      <Stats text={'all'} stats={good + neutral + bad} />
-      <Stats text={'average'} stats={average} />
-      <Stats text={'positive'} stats={percentPositive} unit={'%'}/>
+      <Statistics text={'good'} stats={good} />
+      <Statistics text={'neutral'} stats={neutral} />
+      <Statistics text={'bad'} stats={bad} />
+      <Statistics text={'all'} stats={countAll} />
+      <Statistics text={'average'} stats={average} />
+      <Statistics text={'positive'} stats={percentPositive} unit={'%'}/>
     </div>
   );
 };
